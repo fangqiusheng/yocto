@@ -1,0 +1,4 @@
+yocto_dashboard:
+    resource: "@YoctoDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
