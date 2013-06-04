@@ -6,14 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * @Route("/dashboard")
+ */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("", name="default_dashboard")
      * @Template()
      */
-    public function indexAction($name)
+    public function dashboardAction()
     {
-        return array('name' => $name);
+        return array();
     }
 }
