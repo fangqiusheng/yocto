@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Yocto\Bundle\DashboardBundle\YoctoDashboardBundle(),
             new Yocto\Bundle\LayoutBundle\YoctoLayoutBundle(),
+            new Yocto\Bundle\UserBundle\YoctoUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,3 +1,8 @@
+yocto_user:
+    resource: "@YoctoUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 yocto_layout:
     resource: "@YoctoLayoutBundle/Controller/"
     type:     annotation
