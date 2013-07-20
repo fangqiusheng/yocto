@@ -36,4 +36,4 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: [IS_AUTHENTICATED_REMEMBERED, ROLE_ADMIN] }
+        - { path: ^/, roles: [IS_AUTHENTICATED_REMEMBERED, ROLE_ADMIN], requires_channel: https }
