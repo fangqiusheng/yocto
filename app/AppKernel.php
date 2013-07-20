@@ -19,6 +19,9 @@ class AppKernel extends Kernel
             new Yocto\Bundle\DashboardBundle\YoctoDashboardBundle(),
             new Yocto\Bundle\LayoutBundle\YoctoLayoutBundle(),
             new Yocto\Bundle\UserBundle\YoctoUserBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
