@@ -1,22 +1,29 @@
 {% extends '::base.html.twig' %}
+{% block title %}Log In - Yocto{% endblock %}
 {% block body %}
 
-<form action="{{ path('_login_check') }}" method="post" id="login" class="hide-lables icons">
-    <fieldset{% if error %} class="error"{% endif %}>
-        <label for="username">Username</label>
-        <input autofocus class="span-width" type="name" id="username" name="_username" placeholder="Username" tabindex="1" />
+<div class="yocto-login">
+    <h2>Yocto Log in</h2>
+    <form action="{{ path('_login_check') }}" method="post" id="login" class="{% if error %}error {% endif %}icons">
         {% if error %}
-            <small>{{ error.message }}</small>
+            <small>Oops! {{ error.message }}</small>
         {% endif %}
-    </fieldset>
-    <fieldset>
-        <label for="password">Password</label>
-        <input class="span-width" type="password" id="password" name="_password" placeholder="Password" tabindex="2" />
-    </fieldset>
-    <fieldset class="show-lables">
-        <label for="checkbox" class="remember_me"><input type="checkbox" name="remember_me" id="remember_me" checked tabindex="3" />Keep me logged in for 30 days</label>
-        <input type="submit" name="submit" id="submitbtn" tabindex="4" value="Login" />
-    </fieldset>
-</form>
+        <fieldset>
+            <label for="username">Username</label>
+            <input autofocus class="name" type="name" id="username" name="_username" placeholder="Username" tabindex="1" autocomplete="off"/>
+        </fieldset>
+        <fieldset>
+            <label for="password">Password</label>
+            <input class="password" type="password" id="password" name="_password" placeholder="Password" tabindex="2" />
+        </fieldset>
+        <fieldset>
+            <input type="submit" name="submit" id="submitbtn" tabindex="4" value="Log in" />
+        </fieldset>
+        <fieldset>
+            <input type="checkbox" name="remember_me" id="remember_me" checked tabindex="3" />
+            <label for="checkbox" class="remember_me">Keep me logged in for 30 days</label>
+        </fieldset>
+    </form>
+</div>
 
 {% endblock %}
