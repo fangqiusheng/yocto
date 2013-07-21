@@ -1,0 +1,57 @@
+/***** Forms *****/
+/***** Inputs ****/
+input[type="name"],
+input[type="text"],
+input[type="password"] {
+  border: 1px solid #c8c8c8;
+  color: #777;
+  margin: 0 0 10px;
+  padding: 7px 10px;
+  background-color: #eae7e7;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  width: 60%; }
+
+input[type="submit"] {
+  border: 1px solid #c8c8c8;
+  padding: 7px 10px; }
+
+.icons input[type="name"],
+.icons input[type="text"],
+.icons input[type="password"] {
+  padding: 7px 10px 7px 40px;
+  background: #eae7e7 url(../images/bg_forms.png) no-repeat; }
+
+/***** Inputs:focus *****/
+input[type="name"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #fff;
+  border: 1px solid #22b274;
+  outline: 0; }
+
+/***** Input Classes *****/
+.icons input.name {
+  background-position: 5px 4px; }
+
+.icons input.name:focus {
+  background-position: 5px -24px; }
+
+.icons input.password {
+  background-position: 5px -52px; }
+
+.icons input.password:focus {
+  background-position: 5px -79px; }
+
+/**** Labels *****/
+label {
+  float: left;
+  padding: 4px;
+  width: 100%; }
+
+/***** Errors *****/
+form.error small {
+  color: #ed1c24; }
