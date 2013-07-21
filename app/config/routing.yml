@@ -3,11 +3,6 @@ yocto_user:
     type:     annotation
     prefix:   /
 
-yocto_layout:
-    resource: "@YoctoLayoutBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 yocto_dashboard:
     resource: "@YoctoDashboardBundle/Controller/"
     type:     annotation
