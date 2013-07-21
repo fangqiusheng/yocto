@@ -32,32 +32,27 @@ security:
         connection:  default
 
     firewalls:
-#        main:
-#            remember_me:
-#                key:      "%secret%"
-#                lifetime: 2678400 # 1 month (31 days) in seconds
-#                path:     /
-#                domain:   ~ # Defaults to the current domain from $_SERVER
 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-#        login:
-#            pattern:  ^/demo/secured/login$
-#            security: false
-
         secured_area:
             pattern:    ^/
             anonymous: ~
-            http_basic:
-                realm: "Yocto Authentication"
-            #form_login:
-            #    check_path: _security_check
-            #    login_path: _demo_login
-#            logout:
-#                path:   /logout
-#                target: /
+#            http_basic:
+#                realm: "Yocto Authentication"
+            logout:
+                path:   /logout
+                target: /
+            form_login:
+                check_path: _login_check
+                login_path: _login
+            remember_me:
+                key:      "%secret%"
+                lifetime: 60 #2678400 1 month (31 days) in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

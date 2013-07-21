@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+
+<form action="{{ path('_login_check') }}" method="post" id="login" class="hide-lables icons">
+    <fieldset{% if error %} class="error"{% endif %}>
+        <label for="username">Username</label>
+        <input autofocus class="span-width" type="name" id="username" name="_username" placeholder="Username" tabindex="1" />
+        {% if error %}
+            <small>{{ error.message }}</small>
+        {% endif %}
+    </fieldset>
+    <fieldset>
+        <label for="password">Password</label>
+        <input class="span-width" type="password" id="password" name="_password" placeholder="Password" tabindex="2" />
+    </fieldset>
+    <fieldset class="show-lables">
+        <label for="checkbox" class="remember_me"><input type="checkbox" name="remember_me" id="remember_me" checked tabindex="3" />Keep me logged in for 30 days</label>
+        <input type="submit" name="submit" id="submitbtn" tabindex="4" value="Login" />
+    </fieldset>
+</form>
+
+{% endblock %}
