@@ -1,9 +1,10 @@
 /***** Login *****/
 .yocto-login {
-  margin: 75px auto;
+  margin: 100px auto;
   width: 400px;
   border: 1px solid #c4c6ca;
-  padding: 10px; }
+  padding: 10px;
+  box-shadow: 0 0 3px 1px #888; }
 
 .yocto-login h2 {
   margin-bottom: 5px;
