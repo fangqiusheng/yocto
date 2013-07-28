@@ -7,3 +7,5 @@
 /vendor/
 /bin/
 /composer.phar
+/.sass-cache/*
+/src/Yocto/Bundle/LayoutBundle/Resources/public/css/.sass-cache/*

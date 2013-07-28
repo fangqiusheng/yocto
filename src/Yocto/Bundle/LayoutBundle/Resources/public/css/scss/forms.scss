@@ -6,8 +6,8 @@
 /***** Inputs ****/
 input[type="name"],
 input[type="text"],
-input[type="password"]                      { border: 1px solid #c8c8c8; color: #777; margin: 0 0 10px; padding: 7px 10px; background-color: #eae7e7; -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -ms-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease; width: 60%;}
-input[type="submit"]                        { border: 1px solid #c8c8c8; padding: 7px 10px;}
+input[type="password"]                      { border: 1px solid #c8c8c8; color: #777; margin: 0 0 10px; padding: 7px 10px; background-color: #eae7e7; -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -ms-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease; width: 60%; border-radius: 1px;}
+input[type="submit"]                        { border: 1px solid #c8c8c8; padding: 7px 10px; border-radius: 1px;}
 
 .icons input[type="name"],
 .icons input[type="text"],
