@@ -1,3 +1,8 @@
+yocto_customer:
+    resource: "@YoctoCustomerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 yocto_user:
     resource: "@YoctoUserBundle/Controller/"
     type:     annotation
