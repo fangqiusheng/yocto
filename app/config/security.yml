@@ -28,9 +28,6 @@ security:
         yocto:
             entity: { class: YoctoUserBundle:User }
 
-    acl:
-        connection:  default
-
     firewalls:
 
         dev:
