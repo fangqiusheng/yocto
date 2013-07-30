@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * @ORM\Table(name="yocto_roles")
+ * @ORM\Table(name="acl_roles")
  * @ORM\Entity()
  */
 class Role implements RoleInterface
@@ -30,13 +30,13 @@ class Role implements RoleInterface
     private $role;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="Group", mappedBy="roles")
      */
-    private $users;
+    private $gropus;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->gropus = new ArrayCollection();
     }
 
     /**
@@ -102,7 +102,7 @@ class Role implements RoleInterface
     public function addUser(\Yocto\Bundle\UserBundle\Entity\User $users)
     {
         $this->users[] = $users;
-    
+
         return $this;
     }
 
@@ -124,5 +124,38 @@ class Role implements RoleInterface
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add gropus
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $gropus
+     * @return Role
+     */
+    public function addGropu(\Yocto\Bundle\UserBundle\Entity\Group $gropus)
+    {
+        $this->gropus[] = $gropus;
+
+        return $this;
+    }
+
+    /**
+     * Remove gropus
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $gropus
+     */
+    public function removeGropu(\Yocto\Bundle\UserBundle\Entity\Group $gropus)
+    {
+        $this->gropus->removeElement($gropus);
+    }
+
+    /**
+     * Get gropus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGropus()
+    {
+        return $this->gropus;
     }
 }
