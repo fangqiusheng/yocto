@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use \Yocto\Bundle\UserBundle\Entity\Role;
+use \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup;
 
 /**
  * Yocto\Bundle\UsrBundle\Entity\User
@@ -72,6 +73,13 @@ class User implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="UserOrganisationGroup", mappedBy="user")
      */
     private $userOrganisationGroup;
+
+    /**
+     * User roles
+     *
+     * @var $roles ArrayCollection of user roles
+     */
+    private $roels;
 
     public function __construct()
     {
@@ -387,12 +395,12 @@ class User implements UserInterface, \Serializable
     /**
      * Add roles
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
+     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
      * @return User
      */
-    public function addRole(Role $roles)
+    public function addRole(Role $role)
     {
-        $this->roles[] = $roles;
+        $this->roles->add($role);
     
         return $this;
     }
@@ -400,11 +408,11 @@ class User implements UserInterface, \Serializable
     /**
      * Remove roles
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
+     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
      */
-    public function removeRole(Role $roles)
+    public function removeRole(Role $role)
     {
-        $this->roles->removeElement($roles);
+        $this->roles->removeElement($role);
     }
 
     /**
@@ -413,7 +421,7 @@ class User implements UserInterface, \Serializable
      * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
      * @return User
      */
-    public function addUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function addUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
     {
         $this->userOrganisationGroup[] = $userOrganisationGroup;
 
@@ -425,7 +433,7 @@ class User implements UserInterface, \Serializable
      *
      * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
      */
-    public function removeUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function removeUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
     {
         $this->userOrganisationGroup->removeElement($userOrganisationGroup);
     }
