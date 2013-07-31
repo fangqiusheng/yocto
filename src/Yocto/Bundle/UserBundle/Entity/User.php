@@ -394,12 +394,12 @@ class User implements UserInterface, \Serializable
     /**
      * Add roles
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
+     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
      * @return User
      */
-    public function addRole(Role $roles)
+    public function addRole(Role $role)
     {
-        $this->roles[] = $roles;
+        $this->roles->add($role);
     
         return $this;
     }
@@ -407,11 +407,11 @@ class User implements UserInterface, \Serializable
     /**
      * Remove roles
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
+     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
      */
-    public function removeRole(Role $roles)
+    public function removeRole(Role $role)
     {
-        $this->roles->removeElement($roles);
+        $this->roles->removeElement($role);
     }
 
     /**
