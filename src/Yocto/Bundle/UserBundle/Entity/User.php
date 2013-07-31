@@ -73,6 +73,13 @@ class User implements UserInterface, \Serializable
      */
     private $userOrganisationGroup;
 
+    /**
+     * User roles
+     *
+     * @var $roles ArrayCollection of user roles
+     */
+    private $roels;
+
     public function __construct()
     {
         $this->salt                 = md5(uniqid(null, true));
