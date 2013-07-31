@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 use \Yocto\Bundle\UserBundle\Entity\Role;
+use \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup;
 
 /**
  * Yocto\Bundle\UsrBundle\Entity\User
@@ -420,7 +421,7 @@ class User implements UserInterface, \Serializable
      * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
      * @return User
      */
-    public function addUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function addUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
     {
         $this->userOrganisationGroup[] = $userOrganisationGroup;
 
@@ -432,7 +433,7 @@ class User implements UserInterface, \Serializable
      *
      * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
      */
-    public function removeUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function removeUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
     {
         $this->userOrganisationGroup->removeElement($userOrganisationGroup);
     }
