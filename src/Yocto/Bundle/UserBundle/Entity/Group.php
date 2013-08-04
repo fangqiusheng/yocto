@@ -5,11 +5,14 @@ namespace Yocto\Bundle\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Yocto\Bundle\UserBundle\Entity\Role;
+use Yocto\Bundle\UserBundle\Entity\User;
+
 /**
  * Yocto\Bundle\UsrBundle\Entity\Group
  *
  * @ORM\Table(name="acl_groups")
- * @ORM\Entity(repositoryClass="Yocto\Bundle\UserBundle\Entity\GroupReository")
+ * @ORM\Entity()
  */
 class Group
 {
@@ -21,7 +24,7 @@ class Group
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=30)
+     * @ORM\Column(name="name", type="string", length=64)
      */
     private $name;
 
@@ -32,28 +35,30 @@ class Group
 
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="groups")
-     * @ORM\JoinTable(name="acl_group_roles")
+     * @ORM\JoinTable(name="acl_roles_to_groups")
      *
      */
     private $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserOrganisationGroup", mappedBy="group")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="groups")
+     * @ORM\JoinTable(name="acl_users_to_groups")
+     *
      */
-    private $userOrganisationGroup;
-
+    private $users;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,14 +74,14 @@ class Group
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -92,14 +97,14 @@ class Group
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -112,10 +117,10 @@ class Group
      * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
      * @return Group
      */
-    public function addRole(\Yocto\Bundle\UserBundle\Entity\Role $roles)
+    public function addRole(Role $roles)
     {
         $this->roles[] = $roles;
-    
+
         return $this;
     }
 
@@ -124,7 +129,7 @@ class Group
      *
      * @param \Yocto\Bundle\UserBundle\Entity\Role $roles
      */
-    public function removeRole(\Yocto\Bundle\UserBundle\Entity\Role $roles)
+    public function removeRole(Role $roles)
     {
         $this->roles->removeElement($roles);
     }
@@ -132,7 +137,7 @@ class Group
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
@@ -140,35 +145,35 @@ class Group
     }
 
     /**
-     * Add userOrganisationGroup
+     * Add users
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
+     * @param \Yocto\Bundle\UserBundle\Entity\User $users
      * @return Group
      */
-    public function addUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function addUser(User $users)
     {
-        $this->userOrganisationGroup[] = $userOrganisationGroup;
-    
+        $this->users[] = $users;
+
         return $this;
     }
 
     /**
-     * Remove userOrganisationGroup
+     * Remove users
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
+     * @param \Yocto\Bundle\UserBundle\Entity\User $users
      */
-    public function removeUserOrganisationGroup(\Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup)
+    public function removeUser(User $users)
     {
-        $this->userOrganisationGroup->removeElement($userOrganisationGroup);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get userOrganisationGroup
+     * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUserOrganisationGroup()
+    public function getUsers()
     {
-        return $this->userOrganisationGroup;
+        return $this->users;
     }
 }

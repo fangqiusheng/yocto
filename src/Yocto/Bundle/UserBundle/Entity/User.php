@@ -4,18 +4,17 @@ namespace Yocto\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
-use \Yocto\Bundle\UserBundle\Entity\Role;
-use \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup;
+use Yocto\Bundle\UserBundle\Entity\Group;
 
 /**
  * Yocto\Bundle\UsrBundle\Entity\User
  *
  * @ORM\Table(name="acl_users")
- * @ORM\Entity(repositoryClass="Yocto\Bundle\UserBundle\Entity\UserReository")
+ * @ORM\Entity(repositoryClass="Yocto\Bundle\UserBundle\Entity\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -25,7 +24,7 @@ class User implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string", length=64, unique=true)
      */
     private $username;
 
@@ -40,7 +39,7 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string", length=64, unique=true)
      */
     private $email;
 
@@ -55,14 +54,19 @@ class User implements UserInterface, \Serializable
     private $isExpired;
 
     /**
-     * @ORM\Column(name="expires_at", type="datetime")
+     * @ORM\Column(name="is_locked", type="boolean")
      */
-    private $expiresAt;
+    private $isLocked;
 
     /**
      * @ORM\Column(name="is_credentials_expired", type="boolean")
      */
-    private $credentialsExpired;
+    private $isCredentialsExpired;
+
+    /**
+     * @ORM\Column(name="expires_at", type="datetime")
+     */
+    private $expiresAt;
 
     /**
      * @ORM\Column(name="credentials_expire_at", type="datetime")
@@ -70,24 +74,23 @@ class User implements UserInterface, \Serializable
     private $credentialsExpireAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserOrganisationGroup", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Group", mappedBy="users")
      */
-    private $userOrganisationGroup;
+    private $groups;
 
     /**
-     * User roles
-     *
-     * @var $roles ArrayCollection of user roles
+     *  User Roles
+     * @var roles Array
      */
-    private $roels;
+    private $roles;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->salt                 = md5(uniqid(null, true));
-        $this->roles                = new ArrayCollection();
-        $this->isActive             = true;
-        $this->isExpired            = false;
-        $this->credentialsExpired   = false;
+        $this->groups = new ArrayCollection();
+        $this->roles  = array();
     }
 
     /**
@@ -109,7 +112,7 @@ class User implements UserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
@@ -132,7 +135,7 @@ class User implements UserInterface, \Serializable
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
+
         return $this;
     }
 
@@ -155,7 +158,7 @@ class User implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
@@ -178,14 +181,14 @@ class User implements UserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -208,7 +211,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get isActive
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -224,18 +227,64 @@ class User implements UserInterface, \Serializable
     public function setIsExpired($isExpired)
     {
         $this->isExpired = $isExpired;
-    
+
         return $this;
     }
 
     /**
      * Get isExpired
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsExpired()
     {
         return $this->isExpired;
+    }
+
+    /**
+     * Set isLocked
+     *
+     * @param boolean $isLocked
+     * @return User
+     */
+    public function setIsLocked($isLocked)
+    {
+        $this->isLocked = $isLocked;
+
+        return $this;
+    }
+
+    /**
+     * Get isLocked
+     *
+     * @return boolean
+     */
+    public function getIsLocked()
+    {
+        return $this->isLocked;
+    }
+
+    /**
+     * Set isCredentialsExpired
+     *
+     * @param boolean $isCredentialsExpired
+     * @return User
+     */
+    public function setIsCredentialsExpired($isCredentialsExpired)
+    {
+        $this->isCredentialsExpired = $isCredentialsExpired;
+
+        return $this;
+    }
+
+    /**
+     * Get isCredentialsExpired
+     *
+     * @return boolean
+     */
+    public function getIsCredentialsExpired()
+    {
+        return $this->isCredentialsExpired;
     }
 
     /**
@@ -247,41 +296,18 @@ class User implements UserInterface, \Serializable
     public function setExpiresAt($expiresAt)
     {
         $this->expiresAt = $expiresAt;
-    
+
         return $this;
     }
 
     /**
      * Get expiresAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExpiresAt()
     {
         return $this->expiresAt;
-    }
-
-    /**
-     * Set credentialsExpired
-     *
-     * @param boolean $credentialsExpired
-     * @return User
-     */
-    public function setCredentialsExpired($credentialsExpired)
-    {
-        $this->credentialsExpired = $credentialsExpired;
-    
-        return $this;
-    }
-
-    /**
-     * Get credentialsExpired
-     *
-     * @return boolean
-     */
-    public function getCredentialsExpired()
-    {
-        return $this->credentialsExpired;
     }
 
     /**
@@ -308,53 +334,36 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     Methods Inherited from UserInterface
+     * Add groups
      *
-     * @inheritDoc
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
+     * @return User
      */
-    public function isAccountNonExpired()
+    public function addGroup(Group $groups)
     {
-        if (true === $this->isExpired) {
-            return false;
-        }
+        $this->groups[] = $groups;
 
-        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
-            return false;
-        }
-
-        return true;
+        return $this;
     }
 
     /**
-     * @inheritDoc
+     * Remove groups
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
      */
-    public function isAccountNonLocked()
+    public function removeGroup(Group $groups)
     {
-        return true;
+        $this->groups->removeElement($groups);
     }
 
     /**
-     * @inheritDoc
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function isCredentialsNonExpired()
+    public function getGroups()
     {
-        if (true === $this->credentialsExpired) {
-            return false;
-        }
-
-        if (null !== $this->credentialsExpireAt && $this->credentialsExpireAt->getTimestamp() < time()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isEnabled()
-    {
-        return $this->isActive;
+        return $this->groups;
     }
 
     /**
@@ -362,7 +371,17 @@ class User implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return $this->roles->toArray();
+        // we need to make sure to have at least one role
+        $this->roles[] = "ROLE_USER";
+
+        // Get User groups
+        foreach ($this->getGroups()->toArray() as $group) {
+            foreach ($group->getRoles()->toArray() as $role) {
+                $this->roles[] = $role->getRole();
+            }
+        }
+
+        return array_unique($this->roles);
     }
 
     /**
@@ -393,58 +412,50 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Add roles
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
-     * @return User
+     * @inheritDoc
      */
-    public function addRole(Role $role)
+    public function isEnabled()
     {
-        $this->roles->add($role);
-    
-        return $this;
+        return $this->isActive;
     }
 
     /**
-     * Remove roles
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\Role $role
+     * @inheritDoc
      */
-    public function removeRole(Role $role)
+    public function isAccountNonLocked()
     {
-        $this->roles->removeElement($role);
+        return !$this->isLocked;
     }
 
     /**
-     * Add userOrganisationGroup
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
-     * @return User
+     * @inheritDoc
      */
-    public function addUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
+    public function isAccountNonExpired()
     {
-        $this->userOrganisationGroup[] = $userOrganisationGroup;
+        if (true === $this->isExpired) {
+            return false;
+        }
 
-        return $this;
+        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
-     * Remove userOrganisationGroup
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\UserOrganisationGroup $userOrganisationGroup
+     * @inheritDoc
      */
-    public function removeUserOrganisationGroup(UserOrganisationGroup $userOrganisationGroup)
+    public function isCredentialsNonExpired()
     {
-        $this->userOrganisationGroup->removeElement($userOrganisationGroup);
-    }
+        if (true === $this->isCredentialsExpired) {
+            return false;
+        }
 
-    /**
-     * Get userOrganisationGroup
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUserOrganisationGroup()
-    {
-        return $this->userOrganisationGroup;
+        if (null !== $this->isCredentialsExpired && $this->credentialsExpireAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
     }
 }
