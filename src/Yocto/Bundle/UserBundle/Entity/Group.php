@@ -54,11 +54,11 @@ class Group
         $this->roles = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,14 +74,14 @@ class Group
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -97,14 +97,14 @@ class Group
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -120,7 +120,7 @@ class Group
     public function addRole(Role $roles)
     {
         $this->roles[] = $roles;
-    
+
         return $this;
     }
 
@@ -137,7 +137,7 @@ class Group
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
@@ -153,7 +153,7 @@ class Group
     public function addUser(User $users)
     {
         $this->users[] = $users;
-    
+
         return $this;
     }
 
@@ -170,7 +170,7 @@ class Group
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
