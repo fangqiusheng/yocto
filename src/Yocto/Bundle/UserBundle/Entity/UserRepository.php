@@ -21,9 +21,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         $q = $this
             ->createQueryBuilder('u')
-            ->select('u, g, r')
+            ->select('u, g')
             ->leftJoin('u.groups', 'g')
-            ->leftJoin('g.roles', 'r')
             ->where('u.username = :username OR u.email = :email')
             ->setParameter('username', $username)
             ->setParameter('email', $username)
@@ -33,16 +32,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             // The Query::getSingleResult() method throws an exception
             // if there is no record matching the criteria.
             $user = $q->getSingleResult();
-            /*
-            foreach ($user->getGroups()->toArray() as $group) {
-                foreach ($group->getRoles()->toArray() as $role) {
-                    # code...
-                    var_dump($role->getRole());
-                }
-            }
-            #die;
-            */
-            
         } catch (NoResultException $e) {
             $message = sprintf(
                 'Unable to find an active admin YoctoUserBundle:User object identified by "%s".',
