@@ -21,37 +21,31 @@ class Role implements RoleInterface
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=30)
+     * @ORM\Column(name="name", type="string", length=64)
      */
     private $name;
 
     /**
-     * @ORM\Column(name="role", type="string", length=20, unique=true)
+     * @ORM\Column(name="role", type="string", length=32, unique=true)
      */
     private $role;
 
     /**
      * @ORM\ManyToMany(targetEntity="Group", mappedBy="roles")
      */
-    private $gropus;
-
+    private $groups;
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->gropus = new ArrayCollection();
-    }
-
-    /**
-     * @see RoleInterface
-     */
-    public function getRole()
-    {
-        return $this->role;
+        $this->groups = new ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -67,14 +61,14 @@ class Role implements RoleInterface
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -90,73 +84,50 @@ class Role implements RoleInterface
     public function setRole($role)
     {
         $this->role = $role;
-    
+
         return $this;
     }
 
     /**
-     * Add users
+     * Get role
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\User $users
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
      * @return Role
      */
-    public function addUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    public function addGroup(Group $groups)
     {
-        $this->users[] = $users;
+        $this->groups[] = $groups;
 
         return $this;
     }
 
     /**
-     * Remove users
+     * Remove groups
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\User $users
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
      */
-    public function removeUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    public function removeGroup(Group $groups)
     {
-        $this->users->removeElement($users);
+        $this->groups->removeElement($groups);
     }
 
     /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * Add gropus
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\Group $gropus
-     * @return Role
-     */
-    public function addGropu(\Yocto\Bundle\UserBundle\Entity\Group $gropus)
-    {
-        $this->gropus[] = $gropus;
-
-        return $this;
-    }
-
-    /**
-     * Remove gropus
-     *
-     * @param \Yocto\Bundle\UserBundle\Entity\Group $gropus
-     */
-    public function removeGropu(\Yocto\Bundle\UserBundle\Entity\Group $gropus)
-    {
-        $this->gropus->removeElement($gropus);
-    }
-
-    /**
-     * Get gropus
+     * Get groups
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGropus()
+    public function getGroups()
     {
-        return $this->gropus;
+        return $this->groups;
     }
 }
