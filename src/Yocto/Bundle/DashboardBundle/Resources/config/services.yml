@@ -1,0 +1,7 @@
+parameters:
+    yocto_dashboard.menu_builder.class:             Yocto\Bundle\DashboardBundle\Menu\MenuBuilder
+
+services:
+    yocto_dashboard.menu_builder:
+        class: %yocto_dashboard.menu_builder.class%
+        arguments: [@event_dispatcher]
