@@ -1,10 +1,7 @@
 {% block menu %}
     <nav>
-        <ul>
-            <li>Dashboard</li>
-        </ul>
+        {{ knp_menu_render('YoctoLayoutBundle:Builder:mainMenu') }}
     </nav>
 {% endblock %}
 {% block aside %}
-{{ knp_menu_render('YoctoLayoutBundle:Builder:mainMenu') }}
 {% endblock %}
