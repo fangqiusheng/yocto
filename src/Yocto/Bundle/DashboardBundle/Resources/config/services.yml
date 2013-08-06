@@ -1,7 +1,12 @@
 parameters:
-    yocto_dashboard.menu_builder.class:             Yocto\Bundle\DashboardBundle\Menu\MenuBuilder
+    yocto_dashboard.builder.class:      Yocto\Bundle\LayoutBundle\Menu\Builder
+    yocto_dashboard.bundle.name:        Dashboard
+    yocto_dashboard.bundle.role:        ROLE_USER
 
 services:
-    yocto_dashboard.menu_builder:
-        class: %yocto_dashboard.menu_builder.class%
-        arguments: [@event_dispatcher]
+    yocto_dashboard.builder:
+        class: %yocto_dashboard.builder.class%
+        calls:
+            - [setBundle, ["%yocto_dashboard.bundle.name%", "%yocto_dashboard.bundle.role%"]]
+        tags:
+            - { name: kernel.event_listener, event: yocto_layout.find_bundles, method: addBundle }
