@@ -5,4 +5,6 @@
         </ul>
     </nav>
 {% endblock %}
-{% block aside %}{% endblock %}
+{% block aside %}
+{{ knp_menu_render('YoctoLayoutBundle:Builder:mainMenu') }}
+{% endblock %}
