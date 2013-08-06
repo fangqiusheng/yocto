@@ -46,6 +46,8 @@ class Builder extends ContainerAware
         // Add Menu items that are available for user
         foreach($bundles as $bundle) {
             if ($this->security->isGranted($bundle['role'])) {
+
+                // Only add the menu if user has granted at least minimum access
                 $menu->addChild($bundle['name'], array(
                     'route' => 'default_dashboard',
                     'uri'   => '#dashboard'
