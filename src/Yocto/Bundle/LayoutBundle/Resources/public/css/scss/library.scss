@@ -1,0 +1,8 @@
+@mixin button($color, $backgroundColor, $borderColor:$backgroundColor) {
+    background-color: #{$backgroundColor};
+    color: #{$color};
+    border: 1px solid $borderColor;
+    transition: color .25s linear, background-color .25s linear .1s;
+    -webkit-transition: color .25s linear, background-color .25s linear .1s;
+    -moz-transition: color .25s linear, background-color .25s linear .1s;
+}

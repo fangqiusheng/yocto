@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/***** SASS Library *****/
 /***** Base Setup *****/
 /***** Reset & Basics *****/
 html, body, div, span, applet,
@@ -51,7 +52,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff;
-  font: 14px/18px "fs_joeyregular", Century Gothic, Trebuchet MS, Helvetica, sans-serif; }
+  font: 14px/18px "Arialregular", Helvetica, sans-serif; }
 
 /***** Typography *****/
 h2 {

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/***** SASS Library *****/
+/***** Header Navigation *****/
+ul.y-header {
+  background-color: #F6F6F6;
+  padding: 10px;
+  overflow: hidden; }
+  ul.y-header li {
+    float: right;
+    margin: 0px 5px; }

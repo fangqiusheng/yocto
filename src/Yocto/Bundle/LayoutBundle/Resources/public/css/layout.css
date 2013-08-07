@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/***** SASS Library *****/
+/***** Buttons *****/
+a.y-btn {
+  padding: 5px 10px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  color: #7b7b7b;
+  border: 1px solid #d8d8d8;
+  transition: color .25s linear, background-color .25s linear .1s;
+  -webkit-transition: color .25s linear, background-color .25s linear .1s;
+  -moz-transition: color .25s linear, background-color .25s linear .1s; }
+  a.y-btn:hover {
+    background-color: #f8f8f8;
+    color: #222222;
+    border: 1px solid #d8d8d8;
+    transition: color .25s linear, background-color .25s linear .1s;
+    -webkit-transition: color .25s linear, background-color .25s linear .1s;
+    -moz-transition: color .25s linear, background-color .25s linear .1s; }

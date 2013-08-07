@@ -1,8 +1,13 @@
 @charset "UTF-8";
+
+/***** SASS Library *****/
+@import "library.scss";
+
 /***** Base Setup *****/
 
+
 @mixin font($size:14px, $height:18px, $weight:regular) { 
-    font:#{$size}/#{$height} "fs_joey#{$weight}", Century Gothic, Trebuchet MS, Helvetica, sans-serif; 
+    font:#{$size}/#{$height} "Arial#{$weight}", Helvetica, sans-serif;
 }
 
 /***** Reset & Basics *****/

@@ -1,6 +1,10 @@
-// Layout.scss
+@charset "UTF-8";
+
+/***** SASS Library *****/
+@import "library.scss";
 
 /***** Buttons *****/
-a.y-btn         {
+a.y-btn         { padding: 5px 10px; font-weight: bold; @include button(#7B7B7B, #F0F0F0, #D8D8D8);
     &.y-icon    {}
+    &:hover     { @include button(#222222, #F8F8F8, #D8D8D8); }
 }
