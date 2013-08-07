@@ -35,6 +35,12 @@ class Builder extends ContainerAware
          $event->addBundle($this->bundle);
     }
 
+    /**
+     * Builds main menu
+     * @param   FactoryInterface  $factory
+     * @param   Array             $option
+     * @return  $menu
+     */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         // Get bundles that have registered the menu
@@ -84,14 +90,14 @@ class Builder extends ContainerAware
     {
         // First let's create some space for sorting items
         // havePrioritySet will store elements that had priority set
-        $havePrioritySet = array();
+        $havePrioritySet    = array();
 
         // Now some items may not have any priority option set at all
         // We will add them to the end of the list
-        $noPrioritySet = array();
+        $noPrioritySet      = array();
 
         // Our new ordered list of bundles
-        $ordered = array();
+        $ordered            = array();
 
         foreach ($bundles as $bundle) {
             if (isset($bundle['priority'])) {
