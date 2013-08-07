@@ -1,8 +1,9 @@
 parameters:
     yocto_dashboard.builder.class:      Yocto\Bundle\LayoutBundle\Menu\Builder
     yocto_dashboard.bundle:
-        name: Dashboard
-        role: ROLE_USER
+        name:       Dashboard
+#        role:       ROLE_USER # No need for a particular role to access the Dashboard
+        priority:   1
 
 services:
     yocto_dashboard.builder:
