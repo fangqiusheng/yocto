@@ -1,2 +1,6 @@
 {% extends "YoctoLayoutBundle:Default:layout.html.twig" %}
+
+{% block menu_options %}
+    {{ knp_menu_render('YoctoDashboardBundle:Builder:optionMenu') }}
+{% endblock %}
 {% block content %} Hello world!{% endblock %}

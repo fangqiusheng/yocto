@@ -1,8 +1,13 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    {% block navigation %}
-        {% include "YoctoLayoutBundle:Elements:navigation.html.twig" %}
+    <header>
+        {% block navigation %}
+            {% include "YoctoLayoutBundle:Elements/Navigation:navigation.html.twig" %}
+        {% endblock %}
+        {% block menu_options %}{% endblock %}
+    </header>
+    {% block aside %}
     {% endblock %}
     {% block content %}
     {% endblock %}
