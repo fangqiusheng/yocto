@@ -20,6 +20,9 @@ class Builder extends ContainerAware
      */
     private $security;
 
+    /**
+     * @var Array bundle
+     */
     private $bundle;
 
     public function setBundle($path, $role)
@@ -34,14 +37,21 @@ class Builder extends ContainerAware
 
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $bundles = $this->container->get('event_dispatcher')->dispatch(BundleEvent::EVENT, new BundleEvent())->getBundles();
+        // Get bundles that have registered the menu
+        $bundles = $this
+            ->container
+            ->get('event_dispatcher')
+            ->dispatch(BundleEvent::EVENT, new BundleEvent())
+            ->getBundles();
 
         // Basic setup
         $this->factory  = $factory;
         $this->security = $this->container->get('security.context');
 
         // Create menu
-        $menu = $this->factory->createItem('root');
+        $menu = $this
+            ->factory
+            ->createItem('root');
 
         // Add Menu items that are available for user
         foreach($bundles as $bundle) {
