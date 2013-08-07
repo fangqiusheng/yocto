@@ -1,5 +1,6 @@
 {% block menu %}
     <nav>
+        {% include "YoctoLayoutBundle:Elements/Navigation:header.html.twig" %}
         {{ knp_menu_render('YoctoLayoutBundle:Builder:mainMenu') }}
     </nav>
 {% endblock %}
