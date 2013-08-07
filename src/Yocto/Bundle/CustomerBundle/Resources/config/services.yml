@@ -1,12 +1,13 @@
 parameters:
     yocto_customer.builder.class:       Yocto\Bundle\LayoutBundle\Menu\Builder
-    yocto_customer.bundle.name:         Customers
-    yocto_customer.bundle.role:         ROLE_CUSTOMERS
+    yocto_customer.bundle:
+        name: Customers
+        role: ROLE_CUSTOMERS
 
 services:
     yocto_customer.builder:
         class: %yocto_customer.builder.class%
         calls:
-            - [setBundle, ["%yocto_customer.bundle.name%", "%yocto_customer.bundle.role%"]]
+            - [setBundle, ["%yocto_customer.bundle%"]]
         tags:
             - { name: kernel.event_listener, event: yocto_layout.find_bundles, method: addBundle }

@@ -25,9 +25,9 @@ class Builder extends ContainerAware
      */
     private $bundle;
 
-    public function setBundle($path, $role)
+    public function setBundle(array $bundle)
     {
-        $this->bundle = array('name' => $path, 'role' => $role);
+        $this->bundle = $bundle;
     }
 
     public function addBundle(BundleEvent $event)
