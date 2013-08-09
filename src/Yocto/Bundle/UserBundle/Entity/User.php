@@ -74,7 +74,7 @@ class User implements AdvancedUserInterface, \Serializable
     private $credentialsExpireAt;
 
     /**
-     * @ORM\Column(name="token", type="string", length="32")
+     * @ORM\Column(name="token", type="string", length=32)
      */
     private $token;
 
