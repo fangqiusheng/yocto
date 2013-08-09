@@ -20,7 +20,9 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/security-extra-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "v1.1.2"
+        "knplabs/knp-menu-bundle": "v1.1.2",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/migrations": "dev-master@dev"
     },
     "scripts": {
         "post-install-cmd": [
