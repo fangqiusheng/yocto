@@ -74,6 +74,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $credentialsExpireAt;
 
     /**
+     * @ORM\Column(name="token", type="string", length=32)
+     */
+    private $token;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Group", mappedBy="users")
      */
     private $groups;
@@ -331,6 +336,29 @@ class User implements AdvancedUserInterface, \Serializable
     public function getCredentialsExpireAt()
     {
         return $this->credentialsExpireAt;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**
