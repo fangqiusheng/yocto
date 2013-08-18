@@ -6,3 +6,12 @@
     -webkit-transition: color .25s linear, background-color .25s linear .1s;
     -moz-transition: color .25s linear, background-color .25s linear .1s;
 }
+
+@mixin button-classic($color, $backgroundColor, $borderColor:$backgroundColor) {
+    background-color: #{$backgroundColor};
+    color: #{$color};
+    border: 1px solid;
+    border-color: #{$borderColor};
+    transition-duration: 150ms;
+    transition-property: background-color, border-color, box-shadow;
+}
