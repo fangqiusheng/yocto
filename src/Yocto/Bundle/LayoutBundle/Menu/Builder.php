@@ -57,7 +57,9 @@ class Builder extends ContainerAware
         // Create menu
         $menu = $this
             ->factory
-            ->createItem('Header');
+            ->createItem('Header', array(
+                'attributes' => array('class' => 'y-nav')
+            ));
 
         // Sort the list
         $this->sortBundles($bundles);
