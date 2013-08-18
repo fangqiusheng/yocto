@@ -5,6 +5,7 @@
 
 /***** Header Navigation *****/
 
-ul.y-header             { background-color: #F6F6F6; padding: 10px; overflow: hidden;
-    & li                { float: right; margin: 0px 5px;}
+ul.y-header                     { background-color: rgba(0, 0, 0, 0.03); padding: 10px; overflow: hidden; border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    & li                        { float: right; margin: 0px 5px; }
 }
+

@@ -4,7 +4,29 @@
 @import "library.scss";
 
 /***** Buttons *****/
-a.y-btn         { padding: 5px 10px; font-weight: bold; @include button(#7B7B7B, #F0F0F0, #D8D8D8);
-    &.y-icon    {}
-    &:hover     { @include button(#222222, #F8F8F8, #D8D8D8); }
+
+@mixin icon-set($icon-set, $color:#7B7B7B) {
+    a.y-btn                         { padding: 5px 10px; text-decoration: none; cursor: pointer; font-size: 12px; line-height: 20px; @include button-classic(#7B7B7B, transparent, transparent);
+        & span.icon                 { display: inline-block; position: relative; top: 7px; left: -5px;}
+        &:hover                     { @include button-classic(#{$color}, rgba(3, 14, 27, 0.03), rgba(23, 51, 78, 0.15) rgba(23, 51, 78, 0.17) rgba(23, 51, 78, 0.2)); }
+        &.y-btn-24                  { padding: 7px 12px;
+            & span.icon             { background: url(../images/#{$icon-set}-24x24.png) no-repeat 0px 0px; width: 24px; height: 24px;
+                &.user              { background-position: -24px 0px; }
+            }
+            &:hover span.icon       { background-position: 0px -24px;
+                &.user              { background-position: -24px -24px;}
+            }
+        }
+        &.y-btn-32                  { display: block;
+            & span.icon             { display: block; top: 0px; left: 0px; margin: auto; background: url(../images/#{$icon-set}-32x32.png) no-repeat 0px 0px; width: 32px; height: 32px;
+                &.user              { background-position: -32px 0px; }
+            }
+            &:hover span.icon       { background-position: 0px -32px;
+                &.user              { background-position: -32px -32px; }
+            }
+        }
+    }
 }
+
+.set-classic                        { @include icon-set(iconset-classic)}
+.set-simple                         { @include icon-set(iconset-simple, #22b274)}

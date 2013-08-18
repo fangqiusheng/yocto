@@ -2,9 +2,10 @@
 /***** SASS Library *****/
 /***** Header Navigation *****/
 ul.y-header {
-  background-color: #F6F6F6;
+  background-color: rgba(0, 0, 0, 0.03);
   padding: 10px;
-  overflow: hidden; }
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03); }
   ul.y-header li {
     float: right;
     margin: 0px 5px; }
