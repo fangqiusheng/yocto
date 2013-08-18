@@ -1,16 +1,8 @@
 {% extends 'knp_menu.html.twig' %}
 
-{% block list %}
+{% block root %}
     {% import 'knp_menu.html.twig' as menu %}
-    {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
-        {% if item.extra('wrap') %}
-            <span class="el-close">
-        {% endif %}
-        <ul{{ menu.attributes(listAttributes) }}>
-            {{ block('children') }}
-        </ul>
-        {% if item.extra('wrap') %}
-            </span>
-        {% endif %}
-    {% endif %}
+    <ul{{ menu.attributes(item.attributes) }}>
+        {{ block('children') }}
+    </ul>
 {% endblock %}

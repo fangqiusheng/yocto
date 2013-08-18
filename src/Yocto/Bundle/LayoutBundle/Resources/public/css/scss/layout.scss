@@ -17,7 +17,7 @@
                 &.user              { background-position: -24px -24px;}
             }
         }
-        &.y-btn-32                  { display: block;
+        &.y-btn-32                  { display: block; margin-top: 5px;
             & span.icon             { display: block; top: 0px; left: 0px; margin: auto; background: url(../images/#{$icon-set}-32x32.png) no-repeat 0px 0px; width: 32px; height: 32px;
                 &.user              { background-position: -32px 0px; }
             }
