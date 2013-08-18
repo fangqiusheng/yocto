@@ -3,6 +3,8 @@ parameters:
     yocto_customer.bundle:
         name: Customers
         role: ROLE_CUSTOMERS
+        uri:        /\/customers/
+        route:      default_customers
 
 services:
     yocto_customer.builder:

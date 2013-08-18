@@ -20,4 +20,13 @@ class DefaultController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/view", name="view_dashboard")
+     * @Template()
+     */
+    public function viewDashboardAction()
+    {
+        return array();
+    }
 }

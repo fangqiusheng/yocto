@@ -25,7 +25,7 @@ ul.y-nav {
       ul.y-nav li a:link,
       ul.y-nav li a :visited {
         color: #7b7b7b; }
-  ul.y-nav li:hover {
+  ul.y-nav li:hover, ul.y-nav li.selected {
     background: #fdfdfd;
     /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -44,6 +44,8 @@ ul.y-nav {
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#f6f6f6',GradientType=0 );
     /* IE6-8 */ }
+  ul.y-nav li.selected a {
+    color: #22B274; }
   ul.y-nav li.first {
     border-left: 1px solid #e5e5e5;
     margin-left: 10px; }

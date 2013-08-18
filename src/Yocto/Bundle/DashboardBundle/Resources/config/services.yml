@@ -4,6 +4,8 @@ parameters:
         name:       Dashboard
 #        role:       ROLE_USER # No need for a particular role to access the Dashboard
         priority:   1
+        uri:        /\/dashboard/
+        route:      default_dashboard
 
 services:
     yocto_dashboard.builder:

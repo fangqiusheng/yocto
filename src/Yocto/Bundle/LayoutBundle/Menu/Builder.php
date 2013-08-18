@@ -25,6 +25,11 @@ class Builder extends ContainerAware
      */
     private $bundle;
 
+    /**
+     * @var \Symfony\Component\Routing\RouterInterface
+     */
+    private $router;
+
     public function setBundle(array $bundle)
     {
         $this->bundle = $bundle;
@@ -53,6 +58,9 @@ class Builder extends ContainerAware
         // Basic set up
         $this->factory  = $factory;
         $this->security = $this->container->get('security.context');
+        $this->router   = $this->container->get('router');
+
+        $uri      = $this->router->getContext()->getPathInfo();
 
         // Create menu
         $menu = $this
@@ -73,9 +81,15 @@ class Builder extends ContainerAware
 
                 // Add item to the menu
                 $menu->addChild($bundle['name'], array(
-                    'route' => 'default_dashboard',
-                    'uri'   => '#dashboard'
+                    'route' => $bundle['route'],
+                    'uri'   => '/dashboard'
                 ));
+
+                // Check if we are on the current uri
+                if (preg_match($bundle['uri'], $uri)) {
+                    // Add current class
+                    $menu[$bundle['name']]->setAttribute('class', 'selected');
+                }
             }
 
         }
