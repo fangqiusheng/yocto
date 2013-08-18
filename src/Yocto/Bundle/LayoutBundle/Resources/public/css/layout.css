@@ -38,7 +38,8 @@
       .set-classic a.y-btn.y-btn-24:hover span.icon.user {
         background-position: -24px -24px; }
   .set-classic a.y-btn.y-btn-32 {
-    display: block; }
+    display: block;
+    margin-top: 5px; }
     .set-classic a.y-btn.y-btn-32 span.icon {
       display: block;
       top: 0px;
@@ -91,7 +92,8 @@
       .set-simple a.y-btn.y-btn-24:hover span.icon.user {
         background-position: -24px -24px; }
   .set-simple a.y-btn.y-btn-32 {
-    display: block; }
+    display: block;
+    margin-top: 5px; }
     .set-simple a.y-btn.y-btn-32 span.icon {
       display: block;
       top: 0px;
