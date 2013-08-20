@@ -1,5 +1,6 @@
 #Yocto Project
-Advanced e-commerce platform
+
+###Advanced e-commerce platform
 ====================
 
 [Setup for Developers](doc/SETUP.md)
