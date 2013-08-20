@@ -10,7 +10,7 @@
 
  - install the vhost
 
-`cp app/config/vhost.conf /your/vhosts/folder/yocto.conf`
+ `cp app/config/vhost.conf /your/vhosts/folder/yocto.conf`
 
  - reload apache
 
@@ -18,9 +18,9 @@
 
  `curl -sS https://getcomposer.org/installer | php`
 
-  - install the dependencies
+ - install the dependencies
 
-`php ../composer.phar install`
+ `php ../composer.phar install`
 
  - Read the Contributing guidelines
 
