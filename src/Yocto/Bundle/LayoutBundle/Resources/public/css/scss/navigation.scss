@@ -38,3 +38,8 @@ ul.y-nav                        { border: {
 
 }
 
+ul.y-iconPane                   { border: {
+                                        bottom: #{$navBorder};
+                                        } background-color: #F6F6F6; position: relative; top: -1px;
+
+}
