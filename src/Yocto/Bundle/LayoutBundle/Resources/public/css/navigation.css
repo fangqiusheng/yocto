@@ -49,3 +49,9 @@ ul.y-nav {
   ul.y-nav li.first {
     border-left: 1px solid #e5e5e5;
     margin-left: 10px; }
+
+ul.y-iconPane {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #F6F6F6;
+  position: relative;
+  top: -1px; }
