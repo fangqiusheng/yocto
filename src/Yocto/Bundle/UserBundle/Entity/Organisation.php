@@ -29,6 +29,22 @@ class Organisation
     private $isActive;
 
     /**
+     * @ORM\OneToMany(targetEntity="Organisation", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Organisation", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
+
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -82,5 +98,61 @@ class Organisation
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $children
+     * @return Organisation
+     */
+    public function addChildren(\Yocto\Bundle\UserBundle\Entity\Organisation $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $children
+     */
+    public function removeChildren(\Yocto\Bundle\UserBundle\Entity\Organisation $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $parent
+     * @return Organisation
+     */
+    public function setParent(\Yocto\Bundle\UserBundle\Entity\Organisation $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Yocto\Bundle\UserBundle\Entity\Organisation
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }
