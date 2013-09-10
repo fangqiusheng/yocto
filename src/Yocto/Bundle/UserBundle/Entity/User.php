@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
-use Yocto\Bundle\UserBundle\Entity\Group;
+use Yocto\Bundle\UserBundle\Entity\Group AS Group;
 
 /**
  * Yocto\Bundle\UsrBundle\Entity\User
@@ -364,7 +364,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Add groups
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
+     * @param Group $groups
      * @return User
      */
     public function addGroup(Group $groups)
@@ -377,7 +377,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * Remove groups
      *
-     * @param \Yocto\Bundle\UserBundle\Entity\Group $groups
+     * @param Group $groups
      */
     public function removeGroup(Group $groups)
     {
@@ -404,9 +404,7 @@ class User implements AdvancedUserInterface, \Serializable
 
         // Get User groups
         foreach ($this->getGroups()->toArray() as $group) {
-            foreach ($group->getRoles()->toArray() as $role) {
-                $this->roles[] = $role->getRole();
-            }
+            $this->addChildrenRoles($group);
         }
 
         return array_unique($this->roles);
@@ -485,5 +483,44 @@ class User implements AdvancedUserInterface, \Serializable
         }
 
         return true;
+    }
+
+    /**
+     * Checks if group has a child and adds descendent children roles
+     * @param   Group   $group  ACL Group
+     */
+    private function addChildrenRoles(Group $group)
+    {
+        foreach ($roles = $this->getGroupRoles($group) as $role) {
+            if ($role) {
+                $this->roles[] = $role;
+            }
+        }
+
+
+        // Check if there are any descendent children
+        if (count($group->getChildren())) {
+            foreach ($group->getChildren() as $child) {
+                $this->addChildrenRoles($child);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Gets Group roles
+     * @param   Group   $group  ACL Group to get the roles for
+     * @return  Array   $roles  Array of user roles
+     */
+    private function getGroupRoles(Group $group)
+    {
+        $roles = array();
+        foreach ($group->getRoles() as $role) {
+            array_push($roles, $role->getRole());
+        }
+
+        return $roles;
     }
 }

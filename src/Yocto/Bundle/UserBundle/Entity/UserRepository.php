@@ -32,6 +32,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             // The Query::getSingleResult() method throws an exception
             // if there is no record matching the criteria.
             $user = $q->getSingleResult();
+
         } catch (NoResultException $e) {
             $message = sprintf(
                 'Unable to find an active admin YoctoUserBundle:User object identified by "%s".',

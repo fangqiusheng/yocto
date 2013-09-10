@@ -46,6 +46,19 @@ class Group
      *
      */
     private $users;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Group", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Group", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
+
     /**
      * Constructor
      */
@@ -53,6 +66,7 @@ class Group
     {
         $this->roles = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -175,5 +189,61 @@ class Group
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $parent
+     * @return Group
+     */
+    public function setParent(\Yocto\Bundle\UserBundle\Entity\Group $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Yocto\Bundle\UserBundle\Entity\Group
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $children
+     * @return Group
+     */
+    public function addChildren(\Yocto\Bundle\UserBundle\Entity\Group $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Group $children
+     */
+    public function removeChildren(\Yocto\Bundle\UserBundle\Entity\Group $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }
