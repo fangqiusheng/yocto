@@ -90,6 +90,12 @@ class User implements AdvancedUserInterface, \Serializable
     private $roles;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Organisation")
+     * @ORM\JoinColumn(name="primary_organisation_id", referencedColumnName="id")
+     */
+    private $primaryOrganisation;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -522,5 +528,28 @@ class User implements AdvancedUserInterface, \Serializable
         }
 
         return $roles;
+    }
+
+    /**
+     * Set primaryOrganisation
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $primaryOrganisation
+     * @return User
+     */
+    public function setPrimaryOrganisation(\Yocto\Bundle\UserBundle\Entity\Organisation $primaryOrganisation = null)
+    {
+        $this->primaryOrganisation = $primaryOrganisation;
+
+        return $this;
+    }
+
+    /**
+     * Get primaryOrganisation
+     *
+     * @return \Yocto\Bundle\UserBundle\Entity\Organisation
+     */
+    public function getPrimaryOrganisation()
+    {
+        return $this->primaryOrganisation;
     }
 }
