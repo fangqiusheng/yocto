@@ -12,17 +12,21 @@
         &.y-btn-24                  { padding: 7px 12px;
             & span.icon             { background: url(../images/#{$icon-set}-24x24.png) no-repeat 0px 0px; width: 24px; height: 24px;
                 &.user              { background-position: -24px 0px; }
+                &.addCustomer       { background-position: -48px 0px; }
             }
             &:hover span.icon       { background-position: 0px -24px;
                 &.user              { background-position: -24px -24px;}
+                &.addCustomer       { background-position: -48px -24px;}
             }
         }
         &.y-btn-32                  { display: block; margin-top: 5px;
             & span.icon             { display: block; top: 0px; left: 0px; margin: auto; background: url(../images/#{$icon-set}-32x32.png) no-repeat 0px 0px; width: 32px; height: 32px;
                 &.user              { background-position: -32px 0px; }
+                &.addCustomer       { background-position: -64px 0px; }
             }
             &:hover span.icon       { background-position: 0px -32px;
                 &.user              { background-position: -32px -32px; }
+                &.addCustomer       { background-position: -64px -32px; }
             }
         }
     }

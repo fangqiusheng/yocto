@@ -54,4 +54,9 @@ ul.y-iconPane {
   border-bottom: 1px solid #e5e5e5;
   background-color: #F6F6F6;
   position: relative;
-  top: -1px; }
+  top: -1px;
+  overflow: hidden;
+  padding: 8px 5px; }
+  ul.y-iconPane li {
+    float: left;
+    margin: 0 5px; }

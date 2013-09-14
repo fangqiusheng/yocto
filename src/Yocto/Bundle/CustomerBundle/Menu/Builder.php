@@ -19,9 +19,19 @@ class Builder extends ContainerAware
     private $security;
 
     /**
+     * @var Array bundle
+     */
+    private $bundle;
+
+    /**
      * @var \Symfony\Component\Routing\RouterInterface
      */
     private $router;
+
+    public function setBundle(array $bundle)
+    {
+        $this->bundle = $bundle;
+    }
 
     /**
      * Builds icon Pane
@@ -34,15 +44,38 @@ class Builder extends ContainerAware
         // Basic set up
         $this->factory  = $factory;
 
+        $this->bundle = $this
+            ->container
+            ->get('yocto_customer.icon_builder')
+            ->bundle;
+
+        $this->security = $this
+            ->container
+            ->get('security.context');
+
         // Create menu
         $menu = $this
             ->factory
             ->createItem('IconPane', array(
-                'attributes' => array('class' => 'y-iconPane')
-            ));
+                'attributes' => array('class' => 'y-iconPane'),
+            ))
+            ->setLabelAttributes(
+                array('class' => 'icon addCustomer')
+            );
 
-        // Add "0" item to the menu
-        $menu->addChild('zero', array());        
+        // Add customer option
+        // We only want add customer if the user satisfies the minimum role requirements
+        // which can also be unspecified in case if no special requirements are needed
+        // in order to access the functionality
+
+        if (!isset($this->bundle['roles']) || $this->security->isGranted($this->bundle['roles']['create'])) {
+            $menu->addChild('Add Customer', array(
+                'route' => 'default_dashboard',
+                'attributes' => array(
+                    'class' => 'y-btn y-btn-32'
+                    ),
+            ));
+        }
 
         return $menu;        
     }

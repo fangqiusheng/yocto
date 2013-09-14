@@ -33,10 +33,14 @@
       height: 24px; }
       .set-classic a.y-btn.y-btn-24 span.icon.user {
         background-position: -24px 0px; }
+      .set-classic a.y-btn.y-btn-24 span.icon.addCustomer {
+        background-position: -48px 0px; }
     .set-classic a.y-btn.y-btn-24:hover span.icon {
       background-position: 0px -24px; }
       .set-classic a.y-btn.y-btn-24:hover span.icon.user {
         background-position: -24px -24px; }
+      .set-classic a.y-btn.y-btn-24:hover span.icon.addCustomer {
+        background-position: -48px -24px; }
   .set-classic a.y-btn.y-btn-32 {
     display: block;
     margin-top: 5px; }
@@ -50,10 +54,14 @@
       height: 32px; }
       .set-classic a.y-btn.y-btn-32 span.icon.user {
         background-position: -32px 0px; }
+      .set-classic a.y-btn.y-btn-32 span.icon.addCustomer {
+        background-position: -64px 0px; }
     .set-classic a.y-btn.y-btn-32:hover span.icon {
       background-position: 0px -32px; }
       .set-classic a.y-btn.y-btn-32:hover span.icon.user {
         background-position: -32px -32px; }
+      .set-classic a.y-btn.y-btn-32:hover span.icon.addCustomer {
+        background-position: -64px -32px; }
 
 .set-simple a.y-btn {
   padding: 5px 10px;
@@ -87,10 +95,14 @@
       height: 24px; }
       .set-simple a.y-btn.y-btn-24 span.icon.user {
         background-position: -24px 0px; }
+      .set-simple a.y-btn.y-btn-24 span.icon.addCustomer {
+        background-position: -48px 0px; }
     .set-simple a.y-btn.y-btn-24:hover span.icon {
       background-position: 0px -24px; }
       .set-simple a.y-btn.y-btn-24:hover span.icon.user {
         background-position: -24px -24px; }
+      .set-simple a.y-btn.y-btn-24:hover span.icon.addCustomer {
+        background-position: -48px -24px; }
   .set-simple a.y-btn.y-btn-32 {
     display: block;
     margin-top: 5px; }
@@ -104,7 +116,11 @@
       height: 32px; }
       .set-simple a.y-btn.y-btn-32 span.icon.user {
         background-position: -32px 0px; }
+      .set-simple a.y-btn.y-btn-32 span.icon.addCustomer {
+        background-position: -64px 0px; }
     .set-simple a.y-btn.y-btn-32:hover span.icon {
       background-position: 0px -32px; }
       .set-simple a.y-btn.y-btn-32:hover span.icon.user {
         background-position: -32px -32px; }
+      .set-simple a.y-btn.y-btn-32:hover span.icon.addCustomer {
+        background-position: -64px -32px; }
