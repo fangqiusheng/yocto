@@ -77,7 +77,7 @@ class Builder extends ContainerAware
             // We only want add bundles if the user satisfies the minimum role requirements
             // which can also be unspecified in case if no special requirements are needed
             // in order to access the bundle (i.e. dashboard?)
-            if (!isset($bundle['role']) || $this->security->isGranted($bundle['role'])) {
+            if (!isset($bundle['roles']) || $this->security->isGranted($bundle['roles']['view'])) {
 
                 // Add item to the menu
                 $menu->addChild($bundle['name'], array(

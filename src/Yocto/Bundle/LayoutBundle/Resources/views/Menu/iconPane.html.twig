@@ -1,0 +1,29 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block root %}
+    {% import 'knp_menu.html.twig' as menu %}
+    <ul{{ menu.attributes(item.attributes) }}>
+
+        {% block children %}
+            {# save current variables #}
+            {% set currentOptions = options %}
+            {% set currentItem = item %}
+            <li>
+            {% for item in currentItem.children %}
+                {% block item %}
+                    {% spaceless %}
+                        {% if item.displayed %}
+                            {# building the class of the item #}
+                            {%- set attributes = item.attributes %}
+                            {%- set labelAttributes = item.parent.labelAttributes %}
+                            <a href="{{ item.uri }}" {% if attributes.class is defined %} class="{{ attributes.class}}" {% endif %}>
+                                <span {% if labelAttributes.class is defined %} class="{{ labelAttributes.class}}" {% endif %} title="{{ item.label }}" ></span>{{ item.label }}
+                            </a>
+                        {% endif %}
+                    {% endspaceless %}
+                {% endblock %}
+            {% endfor %}
+            </li>
+        {% endblock %}
+    </ul>
+{% endblock %}
