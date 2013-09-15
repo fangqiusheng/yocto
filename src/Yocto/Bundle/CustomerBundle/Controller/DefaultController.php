@@ -17,6 +17,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->get('security.context')->getToken()->getUser();
+
         return array();
     }
 }
