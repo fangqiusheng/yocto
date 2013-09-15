@@ -39,9 +39,15 @@ class Organisation
      */
     private $parent;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="organisations")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -154,5 +160,38 @@ class Organisation
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\User $users
+     * @return Organisation
+     */
+    public function addUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\User $users
+     */
+    public function removeUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

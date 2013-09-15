@@ -96,12 +96,19 @@ class User implements AdvancedUserInterface, \Serializable
     private $primaryOrganisation;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Organisation", inversedBy="users")
+     * @ORM\JoinTable(name="acl_users_to_organisations")
+     */
+    private $organisations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->groups = new ArrayCollection();
         $this->roles  = array();
+        $this->organisations = new ArrayCollection();
     }
 
     /**
@@ -551,5 +558,38 @@ class User implements AdvancedUserInterface, \Serializable
     public function getPrimaryOrganisation()
     {
         return $this->primaryOrganisation;
+    }
+
+    /**
+     * Add organisations
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $organisations
+     * @return User
+     */
+    public function addOrganisation(\Yocto\Bundle\UserBundle\Entity\Organisation $organisations)
+    {
+        $this->organisations[] = $organisations;
+
+        return $this;
+    }
+
+    /**
+     * Remove organisations
+     *
+     * @param \Yocto\Bundle\UserBundle\Entity\Organisation $organisations
+     */
+    public function removeOrganisation(\Yocto\Bundle\UserBundle\Entity\Organisation $organisations)
+    {
+        $this->organisations->removeElement($organisations);
+    }
+
+    /**
+     * Get organisations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganisations()
+    {
+        return $this->organisations;
     }
 }
