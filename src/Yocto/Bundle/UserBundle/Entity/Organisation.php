@@ -5,6 +5,10 @@ namespace Yocto\Bundle\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Yocto\Bundle\InstallationBundle\Entity\Installation;
+use Yocto\Bundle\UserBundle\Entity\Organisation;
+use Yocto\Bundle\UserBundle\Entity\User;
+
 /**
  * @ORM\Table(name="acl_organisations")
  * @ORM\Entity()
@@ -43,6 +47,11 @@ class Organisation
      * @ORM\ManyToMany(targetEntity="User", mappedBy="organisations")
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Yocto\Bundle\InstallationBundle\Entity\Installation", mappedBy="organisation")
+     */
+    private $installations;
 
     public function __construct()
     {
@@ -112,7 +121,7 @@ class Organisation
      * @param \Yocto\Bundle\UserBundle\Entity\Organisation $children
      * @return Organisation
      */
-    public function addChildren(\Yocto\Bundle\UserBundle\Entity\Organisation $children)
+    public function addChildren(Organisation $children)
     {
         $this->children[] = $children;
 
@@ -124,7 +133,7 @@ class Organisation
      *
      * @param \Yocto\Bundle\UserBundle\Entity\Organisation $children
      */
-    public function removeChildren(\Yocto\Bundle\UserBundle\Entity\Organisation $children)
+    public function removeChildren(Organisation $children)
     {
         $this->children->removeElement($children);
     }
@@ -145,7 +154,7 @@ class Organisation
      * @param \Yocto\Bundle\UserBundle\Entity\Organisation $parent
      * @return Organisation
      */
-    public function setParent(\Yocto\Bundle\UserBundle\Entity\Organisation $parent = null)
+    public function setParent(Organisation $parent = null)
     {
         $this->parent = $parent;
 
@@ -168,7 +177,7 @@ class Organisation
      * @param \Yocto\Bundle\UserBundle\Entity\User $users
      * @return Organisation
      */
-    public function addUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    public function addUser(User $users)
     {
         $this->users[] = $users;
 
@@ -180,7 +189,7 @@ class Organisation
      *
      * @param \Yocto\Bundle\UserBundle\Entity\User $users
      */
-    public function removeUser(\Yocto\Bundle\UserBundle\Entity\User $users)
+    public function removeUser(User $users)
     {
         $this->users->removeElement($users);
     }
@@ -193,5 +202,38 @@ class Organisation
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add installations
+     *
+     * @param \Yocto\Bundle\InstallationBundle\Entity\Installation $installations
+     * @return Organisation
+     */
+    public function addInstallation(Installation $installations)
+    {
+        $this->installations[] = $installations;
+
+        return $this;
+    }
+
+    /**
+     * Remove installations
+     *
+     * @param \Yocto\Bundle\InstallationBundle\Entity\Installation $installations
+     */
+    public function removeInstallation(Installation $installations)
+    {
+        $this->installations->removeElement($installations);
+    }
+
+    /**
+     * Get installations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInstallations()
+    {
+        return $this->installations;
     }
 }
