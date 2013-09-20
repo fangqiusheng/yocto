@@ -102,6 +102,13 @@ class User implements AdvancedUserInterface, \Serializable
     private $organisations;
 
     /**
+     * Tree list of active organisations that user belongs to.
+     * This includes inherited organisations.
+     * @var Array   $userOrgs   Array of organisations
+     */
+    private $userOrgs;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -591,5 +598,28 @@ class User implements AdvancedUserInterface, \Serializable
     public function getOrganisations()
     {
         return $this->organisations;
+    }
+
+    /**
+     * Gets list of active organisations and its active children that user belongs to
+     * @return Array    Array key pair ID and Organisation Name, example:
+     *                  [21] => 'My organisation'
+     */
+    public function getUserOrganisations()
+    {
+        foreach ($this->getOrganisations() as $organisation) {
+            if ($organisation->getIsActive()) {
+                $this->userOrgs[$organisation->getId()] = $organisation->getName();
+
+                // Get descendent organisations and add them to the list if active
+                foreach ($organisation->getChildren() as $child) {
+                    if ($child->getIsActive()) {
+                        $this->userOrgs[$child->getId()] = $child->getName();
+                    }
+                }
+            }
+        }
+
+        return $this->userOrgs;
     }
 }
