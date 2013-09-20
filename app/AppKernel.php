@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Yocto\Bundle\CustomerBundle\YoctoCustomerBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Yocto\Bundle\InstallationBundle\YoctoInstallationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
