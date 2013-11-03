@@ -6,13 +6,15 @@
 /***** Header Navigation *****/
 $navBorder:     1px solid #e5e5e5;
 
-ul.y-header                     { background-color: rgba(0, 0, 0, 0.03); padding: 0 10px 10px 10px; overflow: hidden;
-    & li                        { float: right; margin: 0px 5px; }
+ul.y-header                     { background-color: rgba(0, 0, 0, 0.03); overflow: hidden; margin: 0;
+    & li                        { float: right; margin: 10px 5px; 
+        & i                     { margin-right: 5px;}
+    }
 }
 
 ul.y-nav                        { border: {
                                             top: #{$navBorder}; bottom: #{$navBorder};
-                                        } background-color: #f1f1f1;
+                                        } background-color: #f1f1f1; margin-bottom: 0;
     & li                        { border-right: #{$navBorder}; display: inline; padding: 1px 6px 2px;
             & a                     { text-decoration: none; color: #7b7b7b; font: { weight: bold; size: 12px;}
             &:link,
@@ -42,6 +44,6 @@ ul.y-iconPane                   { border: {
                                         bottom: #{$navBorder};
                                         } background-color: #F6F6F6; position: relative; top: -1px; overflow: hidden; padding: 8px 5px;
     & li                        { float:left; margin: 0 5px;
-
+        & i                     { margin-right: 5px; }
     }
 }

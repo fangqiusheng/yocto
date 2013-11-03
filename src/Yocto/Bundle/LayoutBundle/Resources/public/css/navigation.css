@@ -3,16 +3,19 @@
 /***** Header Navigation *****/
 ul.y-header {
   background-color: rgba(0, 0, 0, 0.03);
-  padding: 0 10px 10px 10px;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0; }
   ul.y-header li {
     float: right;
-    margin: 0px 5px; }
+    margin: 10px 5px; }
+    ul.y-header li i {
+      margin-right: 5px; }
 
 ul.y-nav {
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
-  background-color: #f1f1f1; }
+  background-color: #f1f1f1;
+  margin-bottom: 0; }
   ul.y-nav li {
     border-right: 1px solid #e5e5e5;
     display: inline;
@@ -60,3 +63,5 @@ ul.y-iconPane {
   ul.y-iconPane li {
     float: left;
     margin: 0 5px; }
+    ul.y-iconPane li i {
+      margin-right: 5px; }
