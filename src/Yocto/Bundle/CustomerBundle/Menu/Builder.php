@@ -60,7 +60,7 @@ class Builder extends ContainerAware
                 'attributes' => array('class' => 'y-iconPane'),
             ))
             ->setLabelAttributes(
-                array('class' => 'icon addCustomer')
+                array('class' => 'fa fa-book fa-lg')
             );
 
         // Add customer option
@@ -72,7 +72,7 @@ class Builder extends ContainerAware
             $menu->addChild('Add Customer', array(
                 'route' => 'default_dashboard',
                 'attributes' => array(
-                    'class' => 'y-btn y-btn-32'
+                    'class' => 'y-btn y-btn-24'
                     ),
             ));
         }
