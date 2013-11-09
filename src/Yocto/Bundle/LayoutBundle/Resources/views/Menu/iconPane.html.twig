@@ -17,7 +17,7 @@
                             {%- set attributes = item.attributes %}
                             {%- set labelAttributes = item.parent.labelAttributes %}
                             <a href="{{ item.uri }}" {% if attributes.class is defined %} class="{{ attributes.class}}" {% endif %}>
-                                <span {% if labelAttributes.class is defined %} class="{{ labelAttributes.class}}" {% endif %} title="{{ item.label }}" ></span>{{ item.label }}
+                                <i {% if labelAttributes.class is defined %} class="{{ labelAttributes.class}}" {% endif %} title="{{ item.label }}" ></i>{{ item.label }}
                             </a>
                         {% endif %}
                     {% endspaceless %}
