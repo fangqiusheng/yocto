@@ -6,6 +6,7 @@ parameters:
         roles: { view: ROLE_CUSTOMERS, edit: ROLE_CUSTOMERS_EDIT, create: ROLE_CUSTOMERS_CREATE, delete: ROLE_CUSTOMERS_DELETE }
         uri:        /\/customers/
         route:      default_customers
+        priority:   1
 
 services:
     yocto_customer.builder:

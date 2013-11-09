@@ -70,7 +70,7 @@ class Builder extends ContainerAware
             ));
 
         // Sort the list
-        $this->sortBundles($bundles);
+        $bundles = $this->sortBundles($bundles);
 
         // Add Menu items that are available for user
         foreach($bundles as $bundle) {
