@@ -1,0 +1,22 @@
+parameters:
+    yocto_user.builder.class:       Yocto\Bundle\LayoutBundle\Menu\Builder
+    yocto_user.icon_builder.class:  Yocto\Bundle\UserBundle\Menu\Builder
+    yocto_user.bundle:
+        name: Users
+        roles: { view: ROLE_ADMIN, edit: ROLE_ADMIN, create: ROLE_ADMIN, delete: ROLE_ADMIN }
+        uri:        /\/users/
+        route:      users_lists_users
+
+services:
+    yocto_user.builder:
+        class: %yocto_user.builder.class%
+        calls:
+            - [setBundle, ["%yocto_user.bundle%"]]
+        tags:
+            - { name: kernel.event_listener, event: yocto_layout.find_bundles, method: addBundle }
+
+    yocto_user.icon_builder:
+        class: %yocto_user.icon_builder.class%
+        arguments: ['%yocto_user.bundle%']
+        calls:
+            - [setBundle, ["%yocto_user.bundle%"]]

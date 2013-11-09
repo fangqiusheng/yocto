@@ -15,7 +15,7 @@
                         {% if item.displayed %}
                             {# building the class of the item #}
                             {%- set attributes = item.attributes %}
-                            {%- set labelAttributes = item.parent.labelAttributes %}
+                            {%- set labelAttributes = item.labelAttributes %}
                             <a href="{{ item.uri }}" {% if attributes.class is defined %} class="{{ attributes.class}}" {% endif %}>
                                 <i {% if labelAttributes.class is defined %} class="{{ labelAttributes.class}}" {% endif %} title="{{ item.label }}" ></i>{{ item.label }}
                             </a>

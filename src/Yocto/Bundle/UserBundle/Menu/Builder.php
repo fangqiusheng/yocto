@@ -1,6 +1,6 @@
 <?php
 
-namespace Yocto\Bundle\CustomerBundle\Menu;
+namespace Yocto\Bundle\UserBundle\Menu;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Knp\Menu\FactoryInterface;
@@ -46,7 +46,7 @@ class Builder extends ContainerAware
 
         $this->bundle = $this
             ->container
-            ->get('yocto_customer.icon_builder')
+            ->get('yocto_user.icon_builder')
             ->bundle;
 
         $this->security = $this
@@ -60,17 +60,17 @@ class Builder extends ContainerAware
                 'attributes' => array('class' => 'y-iconPane'),
             ));
 
-        // Add customer option
-        // We only want add customer if the user satisfies the minimum role requirements
+        // Add user option
+        // We only want add user if the user satisfies the minimum role requirements
         // which can also be unspecified in case if no special requirements are needed
         // in order to access the functionality
 
         if (!isset($this->bundle['roles']) || $this->security->isGranted($this->bundle['roles']['create'])) {
-            $menu->addChild('Add Customer', array(
+            $menu->addChild('Add User', array(
                 'route' => 'default_dashboard',
                 'attributes' => array(
                     'class' => 'y-btn y-btn-24'
-                    ),
+                ),
             ))->setLabelAttributes(array('class' => 'fa fa-plus fa-lg'));
         }
 
