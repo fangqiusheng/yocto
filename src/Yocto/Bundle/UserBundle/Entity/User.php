@@ -29,6 +29,16 @@ class User implements AdvancedUserInterface, \Serializable
     private $username;
 
     /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $lastName;
+
+    /**
      * @ORM\Column(type="string", length=32)
      */
     private $salt;
@@ -621,5 +631,51 @@ class User implements AdvancedUserInterface, \Serializable
         }
 
         return $this->userOrgs;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 }
