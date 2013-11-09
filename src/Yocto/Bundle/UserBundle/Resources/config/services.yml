@@ -5,7 +5,7 @@ parameters:
         name: Users
         roles: { view: ROLE_ADMIN, edit: ROLE_ADMIN, create: ROLE_ADMIN, delete: ROLE_ADMIN }
         uri:        /\/users/
-        route:      default_users
+        route:      users_lists_users
 
 services:
     yocto_user.builder:
