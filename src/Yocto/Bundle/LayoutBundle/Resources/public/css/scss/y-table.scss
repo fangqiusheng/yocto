@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/***** SASS Library *****/
+@import "library.scss";
+
+@mixin thead-And-tfoot() {
+    background-color: #f5f5f5;
+    border: {
+        bottom: #{$navBorder};
+        top: #{$navBorder};
+    }  
+}
+
+table.y-list {
+    width: 100%;
+    color: #8B8B8B;
+    font: {
+        size: 12px;
+    }
+
+    & thead {
+        @include thead-And-tfoot;
+    }
+
+    & tfoot {
+        @include thead-And-tfoot;
+    }
+
+    & th {
+        padding: 8px 5px;
+    }
+
+    & td {
+        padding: 5px;
+    }
+
+    & tbody tr {
+        border: {
+            bottom: 1px solid #EEE;
+        }
+    }
+
+    & tbody tr:hover {
+        background-color: #e9fff6;
+    }
+}

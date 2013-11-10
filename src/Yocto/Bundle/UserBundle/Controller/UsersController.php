@@ -18,6 +18,9 @@ class UsersController extends Controller
      */
     public function listAction()
     {
-        return array();
+        $repository = $this->getDoctrine()->getRepository('YoctoUserBundle:User');
+
+        $users = $repository->findAll();
+        return array('users' => $users);
     }
 }
